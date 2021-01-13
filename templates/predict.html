@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+<link rel="stylesheet" type="text/css" href="../static/css/w3.css">
+{% block title %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    input[type=number], select, input[type=number] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      display: inline-block;
+      border: 3px solid #ccc;
+      -webkit-transition: 0.5s;
+      transition: 0.5s;
+      outline: none;
+    }
+    
+    input[type=number]:focus, select:focus{
+      border: 3px solid DodgerBlue;
+    }
+    
+    label {
+      padding: 20px 0px 0px 0;
+      display: inline-block;
+    }
+      
+    input[type=submit] {
+      width: 25%;
+      background-color: #4966B1;
+      color: white;
+      padding: 14px 20px;
+      margin: 10px auto;
+      cursor: pointer;
+      border: 0px;
+      display: block;
+    }
+    
+    input[type=submit]:hover {
+      background-color: #45a049;
+    }
+    
+    input[type=submit]:hover {
+      background-color: #45a049;
+    }
+    /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+    .grid-container {
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-gap: 10px;
+      padding: 10px;
+      position: relative;
+    }  
+    </style>
+    {% include "chartjs/acc_chart.html" %}
+{% endblock %}
+{% block content %}
+      {% if model_name is defined %}
+        <h1>{{model_name}} <span style="font-size: 16px;"> is loaded</span></h1>
+      {% else %}       
+        <h1>Model Created</h1>
+      {% endif %}
+<p>Model ID: <span style="font-weight: bold;">{{id}}</span> </p>
+<div class="row">
+  <div class="column" style="width: 70%; max-height:470px; overflow: auto; font-size: 13px;">
+    {% include "/elements/predict_form.html" %} 
+  </div> 
+  <div class="column" style="width: 25%;;" > 
+    <div class="card" style="width: 250px;">
+      <div  class="card-content bg-light" id="donut_single" style="width: 100%; right: 30px">
+      </div>
+  </div>
+</div>
+</div>
+<div class="row">
+  {% block predict_area %}
+  {% endblock predict_area %}
+  </div>
+{% endblock %}
+
+{% block buttonbar %}
+<button type="submit" class="button buttoncreate" form="predict_form">Predict</button>
+{% endblock %}
+
+

@@ -1,0 +1,84 @@
+<style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    /* Create four equal columns that floats next to each other */
+    .column {
+      float: left;
+      width: 10%;
+      padding: 10px;
+    }
+    
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    
+    /* Responsive layout - makes a two column-layout instead of four columns */
+
+    </style>
+
+<h2>Data Quality Report</h2>
+<div class="row">
+      <div class="column" style="min-width: 190px; font-size: 10px;">
+          <div class="card bg-dark text-white" style="height:200px; overflow: auto; ">
+              <div class="card-header"  style="padding: 3px;"> Number of missing values</div>
+              <div class="card-body" style="padding: 3px;">
+                  <table style="font-family: Courier New; ">
+                    {% for i in range(d_len) %}
+                    <tr>
+                      <td>
+                        {{d_names[i]}}
+                     </td>
+                     <td>   
+                        {{d_missing_values[i]}}        
+                     </td>
+                    </tr>
+                    {% endfor %}
+                 </table>
+            </div>
+        </div>
+    </div>
+  </div>
+  <h4>Feature Details:</h4>
+    <div class="row">
+    {% for i in range(d_len) %}
+    <div class="column" style="min-width: 190px; font-size: 10px;">
+        <div class="card bg-dark text-white" style="height:200px; overflow: auto; ">
+            <div class="card-header"  style="padding: 3px;"> {{d_names[i]}} <br/> {{d_types[i]}}</div>
+            <div class="card-body" style="padding: 3px;">
+                <table style="font-family: Courier New; ">
+                    {% for value, count in d_dict_list[i].items() %}
+                    <tr>
+                       <td>
+                          {{value|e}}:
+                       </td>
+                       <td>   
+                          {{count|e}}        
+                       </td>
+                    </tr>
+                    {% endfor %}
+                 </table>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<script>
+  var coll = document.getElementsByClassName("collaps_details");
+  var i;
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  }
+  </script>

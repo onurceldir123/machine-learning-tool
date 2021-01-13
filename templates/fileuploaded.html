@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block title %}
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js""></script>
+  <script>
+    $(document).ready(function() {
+      $('#corr_graph').DataTable();
+    } );
+  </script>
+{% endblock title %}
+{% block content %}
+  <h1>File uploaded successfully!</h1>  
+  <p>File Name: {{name}}</p> 
+  {% include "elements/table.html" %}
+{% endblock %}
+{% block buttonbar %}
+  <form action="/correlation/" method="post">
+    <button type="submit" class="button buttonnext"">Next &raquo;</button>
+  </form> 
+{% endblock %}
+{% block detailmenu %}
+<div class="sticky_bottom_details" style="margin:auto; background-color: #222222; max-height:500px; ">
+<button type="button" class="collaps_details ">&dArr; Details &dArr;</button>
+<div class="collapsible_content" style="color: white; max-width:100%; font-family:Courier New; overflow:auto; max-height:500px; ">
+    {% include "elements/datadetails.html" %}
+</div>
+</div>
+{% endblock detailmenu %}

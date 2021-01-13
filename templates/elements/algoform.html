@@ -1,0 +1,30 @@
+
+<form method="POST"  id="algo_select" action="/prediction">
+    <table width="100%">
+        <tr>
+            <td>
+                Select Algorithm:
+            </td>
+            <td>
+                <div class="drop_down_ozel" style="width:300px;">
+                    <select name = "algorithm" >
+                      {% for algo in algos %}
+                      <option value= "{{algo}}">{{algo}}</option>
+                      {% endfor %}
+                    </select>
+                </div>
+            </td>
+        </tr>
+        <br><br/>
+        <div class="slidecontainer">
+        <tr height="60px">
+            <td width="25%">Split percentage: <span id="demo" style="color: red;"></span></td>
+            <td><input type="range" min="20" max="90" value="66" class="slider" id="myRange" name ='percent'></td>
+        </tr>
+        </div>
+    </table>
+</form>
+
+<script src = "../../static/js/myjs.js">
+   
+</script>

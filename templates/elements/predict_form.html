@@ -1,0 +1,28 @@
+
+
+{% if model_name is defined %}
+    <form method="POST"  id="predict_form" action="/prediction_l/predict">
+{% else %}       
+    <form method="POST"  id="predict_form" action="/prediction/predict">
+{% endif %}
+    {% for i in range(length) %}
+    <div class="row" style="width: 100%;">
+        <div style="left:10px ;width: 37%; text-align:center;">
+          <label for="fname">{{feature_names[i]}}</label>
+        </div> 
+        <div style="width: 60%">
+            {% if "categorical" == types[i]  %}
+                <select id="selectt" name="select{{i}}">              
+                    {% for unique in  uniques[i] %}
+                        <option value="{{unique}}">{{unique}}</option>
+                    {% endfor %}    
+                </select>
+            {% else %} 
+                <input required type="number" id="lname" name="select{{i}}" placeholder="Hint: ({{uniques[i][0]}} - {{uniques[i][1]}}) ">
+            {% endif %}    
+        </div>
+    </div>
+    {% endfor %}  
+</form>
+
+<script src = "../../static/js/myjs.js"></script>

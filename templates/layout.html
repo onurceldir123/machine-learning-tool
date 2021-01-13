@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>Machine Learning</title>
+{% include "meta.html" %}
+{% block title %}
+
+{% endblock title %}
+</head>
+  <body class="scrollbar" style="background-color:#222222;">
+    {% block navbar %}
+      {% include "elements/navbar.html" %}
+    {% endblock navbar %}
+    <div class="main" style="max-width: 850px;">
+        <div class = "content">
+          {% block content %}   
+          {% endblock content %}
+        </div>
+        <br>
+        <div class= "buttonbar sticky_bottom" >  
+          {% block buttonbar %}
+          {% endblock buttonbar %}  
+        </div>               
+      </div>
+        {% block detailmenu %}
+        
+        {% endblock detailmenu %}
+  </body>
+</html>

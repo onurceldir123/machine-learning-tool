@@ -1,0 +1,311 @@
+<style>
+    /* Style the button that is used to open and close the collapsible content */
+.collapsible {
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+  }
+  .collapsible.inline {
+    background-color: rgb(112, 112, 255);
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+  }
+  
+  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+  .active, .collapsible:hover {
+    background-color: rgba(0, 0, 255, 0.678);
+  }
+  
+  /* Style the collapsible content. Note: hidden by default */
+  .content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+  }
+  </style>
+<div style="margin-left: 30vh;margin-right: 30vh;">
+    <div style="background-color: rgb(0, 0, 88); padding: 10px">
+        <h1 style="color:#ccc;">API documentation</h1>
+    </div>
+    <br>
+<button type="button" class="collapsible"> GET - /api/getall</button>
+<div class="content">
+    <h3>Lists all models and their informations.</h3>
+    <h3 class="collapsible inline">Body parameters: None</h3>
+    <pre class="content">
+    </pre>
+    <h3 class="collapsible inline">Example output:</h3>
+    <pre class="content">
+        <code>
+{
+    "_id": "5e5d28034b949ad18f525413", 
+    "accuracy score": 0.9803921568627451, 
+    "column_names": [
+      "sepal length", 
+      "sepal width", 
+      "petal length", 
+      "petal width"
+    ], 
+    "features": [
+      [
+        "4.3", 
+        "7.9"
+      ], 
+      [
+        "2.0", 
+        "4.4"
+      ], 
+      [
+        "1.0", 
+        "6.9"
+      ], 
+      [
+        "0.1", 
+        "2.5"
+      ]
+    ], 
+    "names": "Iris_dataset.data", 
+    "types": [
+      "numeric", 
+      "numeric", 
+      "numeric", 
+      "numeric"
+    ]
+  }, 
+  {
+    "_id": "5e5d28597b7524bbb890b7bb", 
+    "accuracy score": 0.9803921568627451, 
+    "column_names": [
+      "sepal length", 
+      "sepal width", 
+      "petal length", 
+      "petal width"
+    ], 
+    "features": [
+      [
+        "4.3", 
+        "7.9"
+      ], 
+      [
+        "2.0", 
+        "4.4"
+      ], 
+      [
+        "1.0", 
+        "6.9"
+      ], 
+      [
+        "0.1", 
+        "2.5"
+      ]
+    ], 
+    "names": "Iris_dataset.data", 
+    "types": [
+      "numeric", 
+      "numeric", 
+      "numeric", 
+      "numeric"
+    ]
+}
+        </code>
+        </pre>
+</div>
+<br><br>
+<button type="button" class="collapsible">GET - /api/&lt;model_id&gt;</button>
+<div class="content">
+    <h3>Fetches one model information</h3>
+    <a style="font-weight: bold;">Example URL:</a>/api/5e5d28034b949ad18f525413
+    <h3 class="collapsible inline">Body parameters: None</h3>
+    <pre class="content">
+
+    </pre>
+    <h3 class="collapsible inline">Example output:</h3>
+    <pre class="content">
+        <code>
+{
+    "message": "Model fetched successfully!", 
+    "result": {
+      "_id": "5e5d28597b7524bbb890b7bb", 
+      "accuracy score": 0.9803921568627451, 
+      "column_names": [
+        "sepal length", 
+        "sepal width", 
+        "petal length", 
+        "petal width"
+      ], 
+      "features": [
+        [
+          "4.3", 
+          "7.9"
+        ], 
+        [
+          "2.0", 
+          "4.4"
+        ], 
+        [
+          "1.0", 
+          "6.9"
+        ], 
+        [
+          "0.1", 
+          "2.5"
+        ]
+      ], 
+      "names": "Iris_dataset.data", 
+      "types": [
+        "numeric", 
+        "numeric", 
+        "numeric", 
+        "numeric"
+      ]
+    }
+}
+        </code>
+    </pre>
+</div>
+<br><br>
+<button type="button" class="collapsible">POST /api/predict/&lt;model_id&gt;</button>
+<div class="content">
+    <h3>Returns prediction from POST data. JSON file should be sent compatible with the model.</h3>
+    <a style="font-weight: bold;">Example URL:</a>/api/predict/5ef4c5bc35624c9301e4c612
+    <h3 class="collapsible inline">Body parameters: JSON</h3>
+    <pre class="content">
+        <code>
+{
+    "outlook": "overcast",
+    "temperature": "hot",
+    "humidity": "high",
+    "windy": true
+}
+        </code>
+    </pre>
+    <h3 class="collapsible inline">Example output</h3>
+    <pre class="content">
+        <code>
+{
+    "input": {
+      "humidity": "high",
+      "outlook": "overcast",
+      "temperature": "hot",
+      "windy": true
+    },
+    "message": "Prediction was successfully done.",
+    "result": "yes"
+}
+        </code>
+    </pre>
+</div>
+<br><br>
+<button type="button" class="collapsible">POST /api/predicts/&lt;model_id&gt; (Saves to DB)</button>
+<div class="content">
+    <h3>Returns prediction from POST data. JSON file should be sent compatible with the model. It saves to database.</h3>
+    <a style="font-weight: bold;">Example URL:</a>/api/predicts/5ef4c5bc35624c9301e4c612
+    <h3 class="collapsible inline">Body parameters: JSON</h3>
+    <pre class="content">
+        <code>
+{
+    "outlook": "overcast",
+    "temperature": "hot",
+    "humidity": "high",
+    "windy": true
+}
+        </code>
+    </pre>
+    <h3 class="collapsible inline">Example output</h3>
+    <pre class="content">
+        <code>
+{
+    "input": {
+      "humidity": "high",
+      "outlook": "overcast",
+      "temperature": "hot",
+      "windy": true
+    },
+    "message": "Prediction was successfully done.",
+    "result": "yes"
+}
+        </code>
+    </pre>
+</div>
+<br><br>
+<button type="button" class="collapsible">GET /api/modeldata/&lt;model_id&gt;</button>
+<div class="content">
+    <h3>Fetchs predicted datas from database.</h3>
+    <a style="font-weight: bold;">Example URL:</a>/api/modeldata/5ef4c5bc35624c9301e4c612
+    <h3 class="collapsible inline">Body parameters: JSON</h3>
+    <pre class="content">
+
+    </pre>
+    <h3 class="collapsible inline">Example output</h3>
+    <pre class="content">
+        <code>
+[
+    {
+        "GS_1": 13, 
+        "GS_2": 5, 
+        "TMP_1": 84, 
+        "TMP_2": 43, 
+        "VBR_1": -2, 
+        "date": "Thu, 25 Jun 2020 17:14:15 GMT", 
+        "prediction": "0"
+    }, 
+    {
+        "GS_1": 23, 
+        "GS_2": 35, 
+        "TMP_1": 26, 
+        "TMP_2": 48, 
+        "VBR_1": 2, 
+        "date": "Thu, 25 Jun 2020 17:14:17 GMT", 
+        "prediction": "0"
+    }
+]
+        </code>
+    </pre>
+</div>
+<br><br>
+<button type="button" class="collapsible">DELETE /api/&lt;model_id&gt;</button>
+<div class="content">
+    <h3>Removes collection from db.</h3>
+    <a style="font-weight: bold;">Example URL:</a>/api/5ef4c5bc35624c9301e4c612
+    <h3 class="collapsible inline">Body parameters: None</h3>
+    <pre class="content">
+
+    </pre>
+    <h3 class="collapsible inline">Example output:</h3>
+    <pre class="content">
+        <code>
+{
+    "message": "Collection removed successfully!",
+}
+        </code>
+    </pre>
+</div>
+</div>
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
+  </script>

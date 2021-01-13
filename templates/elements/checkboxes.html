@@ -1,0 +1,8 @@
+<form method="post" action="/algorithms/" id="select_features">
+    {% for col in col_names %}
+        <label class="cbox_container">{{col}}        
+            <input type="checkbox" checked="checked" name = "feature_names" value = "{{col}}">          
+            <span class="checkmark"></span>
+        </label>   
+    {% endfor %}    
+</form>

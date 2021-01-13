@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock title %}
+
+{% block content %}
+  <h1>Upload File</h1>
+  <p>Browse and select .csv file.</p>
+  <form action = "/fileuploaded" method = "post" enctype="multipart/form-data" id="uploadform">  
+    <input type="file" name="file" class="filestyle" data-input="false">
+  </form>
+{% endblock %}
+{% block buttonbar %}
+  <button type="submit" class="button buttonupload" form="uploadform"><i class="fa fa-upload"></i> Upload</button>
+{% endblock %}

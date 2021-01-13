@@ -1,0 +1,31 @@
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+  google.charts.load('current', {'packages':['corechart']});
+     google.charts.setOnLoadCallback(drawChart);
+
+     function drawChart() {
+       var data = google.visualization.arrayToDataTable([
+         ['Effort', 'Amount given'],
+         ['Succes',   {{accuracy|safe}}],
+         ['Fail',     100-{{accuracy|safe}} ],
+       ]);
+       var options = {
+         pieSliceTextStyle: {
+           color: 'black',
+         },
+         slices: {
+           0: { color: 'Green' },
+           1: { color: 'Red' }
+         },
+         title: 'Accuracy Score (%)',
+         is3D : true,
+         'width': 250,
+         'height':250,
+         backgroundColor: { fill:'transparent' },
+         legend: 'none',
+       };
+       var chart = new google.visualization.PieChart(document.getElementById('donut_single'));
+       chart.draw(data, options);
+     }
+</script>

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block title %}
+{% endblock %}
+{% block content %}
+<style>
+    input[type=text]{
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      display: inline-block;
+      border: 3px solid #ccc;
+      -webkit-transition: 0.5s;
+      transition: 0.5s;
+      outline: none;
+    }
+    
+    input[type=text]:focus{
+      border: 3px solid DodgerBlue;
+    }
+    </style>
+    <form method="POST"  id="load_form" action="/prediction_l">
+        <label for="fname">Enter Model ID:</label>
+        <input required="required" maxlength = "24" minlength = "24" size="24" type="text" id="load_id" name="load_id"  placeholder="5e5ce2089b394ae613e3e0dc">
+      </form>
+{% endblock %}
+{% block buttonbar %}
+    <button type="submit" class="button buttoncreate" form="load_form">Load Model</button>
+{% endblock %}

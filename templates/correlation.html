@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+{% block title %}
+{% endblock %}
+{% block content %}
+    <h1>Feature Selection</h1>
+    <div class="row">
+      <div class="column" style="min-width: 550px; max-width: 550px">
+          <button type="button" class="collapsible">Correlations</button>
+          <div class="collapsible_content" >
+              <img src="http://localhost:5000/plots/breast_cancer_data/correlation_matrix" width="550px"/>
+          </div>
+          <br><br/>
+          <button type="button" class="collapsible">Chi-Square Test</button>
+          <div class="collapsible_content" >
+              <img src="http://localhost:5000/plots/breast_cancer_data/chi_2" width="550px"/>
+          </div>
+          <br><br/>
+          <button type="button" class="collapsible">Information Gains</button>
+          <div class="collapsible_content" >
+            <img src="http://localhost:5000/plots/breast_cancer_data/mutual_information" width="550px"/>
+          </div>
+          <br><br/>
+          <button type="button" class="collapsible">f-scores</button>
+          <div class="collapsible_content" >
+            <img src="http://localhost:5000/plots/breast_cancer_data/f_scores" width="550px"/>
+          </div>
+      </div>
+      <div class="column" >
+          <div class="sticky" style="overflow: auto;">
+            <button type="button" class="collapsible" style="margin-left: 20px;width: 180px; background-color: rgb(29, 113, 182); text-align: center">Features</button>
+              <div class="collapsible_content" style="margin-left: 20px;margin-top:10px;max-width: 180px;">
+                {% include "elements/checkboxes.html" %}
+              </div>          
+          </div>
+      </div>
+  </div>
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+        
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+              content.style.display = "none";
+            } else {
+              content.style.display = "block";
+            }
+          });
+        }
+        </script>
+{% endblock %}
+{% block buttonbar %}
+<button type="submit" class="button buttonnext" form="select_features">Next &raquo;</button>
+{% endblock %}
+
+
